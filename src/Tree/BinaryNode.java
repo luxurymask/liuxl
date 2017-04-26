@@ -1,4 +1,4 @@
-package Utils;
+package Tree;
 
 public class BinaryNode<AnyType> {
 	AnyType element;

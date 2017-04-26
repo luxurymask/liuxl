@@ -1,4 +1,7 @@
-package Utils;
+package Tree;
+
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	private BinaryNode<AnyType> root;
@@ -19,6 +22,10 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 		return contains(element, root);
 	}
 	
+	public boolean isBinarySearchTree(){
+		return isBinarySearchTree(root);
+	}
+	
 	public BinaryNode<AnyType> findMin(){
 		return findMin(root);
 	}
@@ -33,6 +40,29 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	
 	public void remove(AnyType element){
 		root = remove(element, root);
+	}
+	
+	private boolean isBinarySearchTree(BinaryNode<AnyType> root){
+		BinaryNode<AnyType> current = root;
+		BinaryNode<AnyType> pre = null;
+		Deque<BinaryNode<AnyType>> stack = new LinkedList<BinaryNode<AnyType>>();
+		while(!stack.isEmpty() || current != null){
+			while(current != null){
+				stack.push(current);
+				current = current.left;
+			}
+			
+			if(!stack.isEmpty()){
+				current = stack.pop();
+				if(pre == null || pre.element.compareTo(current.element) < 0){
+					pre = current;
+				}else if(pre.element.compareTo(current.element) >= 0){
+					return false;
+				}
+				current = current.right;
+			}
+		}
+		return true;
 	}
 	
 	/**
@@ -106,7 +136,7 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	 * @param root 根节点。
 	 * @return 最小值节点。
 	 */
-	private BinaryNode<AnyType> findMin(BinaryNode<AnyType> root){
+	protected BinaryNode<AnyType> findMin(BinaryNode<AnyType> root){
 		while(root != null && root.left != null){
 			root = root.left;
 		}

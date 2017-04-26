@@ -1,6 +1,6 @@
-package Utils;
+package Tree;
 
-public class AVLNode<AnyType> {
+public class AVLNode<AnyType> extends BinaryNode{
 	AnyType element;
 	AVLNode<AnyType> left;
 	AVLNode<AnyType> right;
@@ -11,9 +11,7 @@ public class AVLNode<AnyType> {
 	}
 	
 	AVLNode(AnyType element, AVLNode<AnyType> left, AVLNode<AnyType> right){
-		this.element = element;
-		this.left = left;
-		this.right = right;
+		super(element, left, right);
 		height = 0;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 public class Sort {
     /**
      * 插入排序
-     * @param A
+     * @param A 待排序数组。
      */
     public static void insertionSort(int[] A){
         int aLength = A.length;
@@ -23,9 +23,9 @@ public class Sort {
     
     /**
      * 归并排序
-     * @param A
-     * @param low
-     * @param high
+     * @param A 待排序数组。
+     * @param low 排序起始位置。
+     * @param high 排序终止位置。
      * @return
      */
     public static int[] mergeSort(int[] A, int low, int high){
@@ -42,10 +42,10 @@ public class Sort {
     
     /**
      * 归并数组中的两个有序段
-     * @param A
-     * @param low
-     * @param mid
-     * @param high
+     * @param A 待排序数组。
+     * @param low 第一有序段起始位置。
+     * @param mid 第一有序段结束位置。
+     * @param high 第二有序段终止位置。
      */
     public static void merge(int[] A, int low, int mid, int high){
         int[] temp = new int[high - low + 1];
@@ -74,18 +74,38 @@ public class Sort {
         }
     }
     
+    /**
+     * 快速排序。
+     * @param A
+     * @param p
+     * @param q
+     */
     public static void quickSort(int[] A, int p, int q){
         if(p < q){//don't forget the bound.
-            int i = partition(A, p, q);
+            int i = partitionTwoPointers(A, p, q);
             quickSort(A, p, i - 1);
             quickSort(A, i + 1, q);
         }
     }
     
+    public static int partitionTwoPointers(int[] A, int p, int q){
+    	int x = A[p];
+    	int i = p;
+    	int j = q;
+    	while(i < j){
+    		while(i < j && A[j] >= x) j--;
+    		A[i] = A[j];
+    		while(i < j && A[i] <= x) i++;
+    		A[j] = A[i];
+    	}
+    	A[i] = x;
+    	return i;
+    }
+    
     public static int partition(int[] A, int p, int q){
         int x = A[p];
         int i = p;
-        for(int j = p + 1;j < q;j++){
+        for(int j = p + 1;j <= q;j++){
             if(A[j] <= x){
                 int temp = A[++i];
                 A[i] = A[j];
@@ -98,10 +118,59 @@ public class Sort {
         return i;
     }
     
+    /**
+     * 求左孩子index。
+     * @param i 当前节点index。
+     * @return 左孩子index。
+     */
+    private static int leftChild(int i){
+    	return 2 * i - 1;
+    }
+    
+    /**
+     * 下滤。
+     * @param A 堆数组。
+     * @param hole 空位。
+     * @param n 数组长度（不是最大index）。
+     */
+    private static void percDown(int[] A, int hole, int n){
+    	int child;
+    	int tmp = A[hole];
+    	for(;leftChild(hole) < n;hole = child){
+    		child = leftChild(hole);
+    		//大顶堆。
+    		if(child != n - 1 && A[child + 1] > A[child]){
+    			child++;
+    		}
+    		if(tmp < A[child]){
+    			A[hole] = A[child];
+    		}else{
+    			break;
+    		}
+    	}
+    	A[hole] = tmp;
+    }
+    
+    /**
+     * 堆排序，建堆，逐个删除堆顶最大值，移入最后一个位置。
+     * @param A 
+     */
+    public static void heapSort(int[] A){
+    	for(int i = A.length / 2 - 1;i >= 0;i--){
+    		percDown(A, i, A.length);
+    	}
+    	for(int i = A.length - 1;i > 0;i--){
+    		int tmp = A[i];
+    		A[i] = A[0];
+    		A[0] = tmp;
+    		percDown(A, 0, i);
+    	}
+    }
+    
     public static void main(String[] args){
         int[] A = new int[]{1, 3, 7, 8, 2, 4, 6, 5, 9, 0};
         //insertionSort(A);
-        int[] B = mergeSort(A, 0, A.length - 1);
+        //int[] B = mergeSort(A, 0, A.length - 1);
         quickSort(A, 0, A.length - 1);
         for(int i = 0;i < A.length;i++){
             System.out.print(A[i]);

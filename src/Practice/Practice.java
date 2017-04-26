@@ -1,6 +1,6 @@
 package Practice;
 
-public class Practice {
+public class Practice{
     //朴素Fibonacci
     public static int recursiveFibonacci(int n){
         if(n == 0){
