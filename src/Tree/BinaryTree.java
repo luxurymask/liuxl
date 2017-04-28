@@ -223,8 +223,8 @@ public class BinaryTree<AnyType> {
 	
 	/**
 	 * 队列实现层次遍历。
-	 * @param root
-	 * @param list
+	 * @param root 根节点。
+	 * @param list 持有节点对象的List。
 	 */
 	public void breadthFirstTraverse(BinaryNode<AnyType> root, List<BinaryNode<AnyType>> list){
 		Queue<BinaryNode<AnyType>> queue = new LinkedList<BinaryNode<AnyType>>();
@@ -234,6 +234,23 @@ public class BinaryTree<AnyType> {
 			list.add(node);
 			if(node.left != null) queue.add(node.left);
 			if(node.right != null) queue.add(node.right);
+		}
+	}
+	
+	/**
+	 * 栈实现深度优先遍历。
+	 * @param root 根节点。
+	 * @param list 持有节点对象的List。
+	 */
+	public void depthFirstTraverse(BinaryNode<AnyType> root, List<BinaryNode<AnyType>> list){
+		Deque<BinaryNode<AnyType>> stack = new LinkedList<BinaryNode<AnyType>>();
+		stack.add(root);
+		BinaryNode<AnyType> current;
+		while(!stack.isEmpty()){
+			current = stack.pop();
+			list.add(current);
+			if(current.right != null) stack.push(current.right);
+			if(current.left != null) stack.push(current.left);
 		}
 	}
 	
