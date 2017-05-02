@@ -1,9 +1,15 @@
-package algorithms;
+package algorithms.substringmatching;
 
-public class SubstringMatching {
-	public static int bruteForce(String pattern, String string){
+public class BruteForce {
+	/**
+	 * brute force.
+	 * @param pattern
+	 * @param target
+	 * @return
+	 */
+	public static int bruteForce(String pattern, String target){
 		int m = pattern.length();
-		int n = string.length();
+		int n = target.length();
 		
 		if(m == 0 || n == 0){
 			return -1;
@@ -11,7 +17,7 @@ public class SubstringMatching {
 		
 		int i = 0, j = 0, k = 0;
 		while(i < n){
-			if(string.charAt(j) == pattern.charAt(k)){
+			if(target.charAt(j) == pattern.charAt(k)){
 				j++;
 				k++;
 			}else{
