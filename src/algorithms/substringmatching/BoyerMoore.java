@@ -6,7 +6,7 @@ public class BoyerMoore {
 		int patternLength = bmPattern.getLength();
 		int i = patternLength - 1;
 		int j = i, k = i;
-		while(i < patternLength){
+		while(i < target.length()){
 			while(k >= 0 && target.charAt(j) == pattern.charAt(k)){
 				j--;
 				k--;
@@ -25,6 +25,7 @@ public class BoyerMoore {
 	}
 	
 	public static void main(String[] args){
-		
+		BoyerMoore bm = new BoyerMoore();
+		System.out.println(bm.boyerMoore("here is a simple example", "example"));
 	}
 }

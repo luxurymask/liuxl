@@ -16,10 +16,13 @@ public final class BMPattern {
 	 */
 	private Map<Integer, Integer> suffixMap = new HashMap<Integer, Integer>();
 	
+	private Map<Integer, Boolean> suffixIsPrefix = new HashMap<Integer, Boolean>();
+	
 	public BMPattern(String pattern){
 		this.pattern = pattern;
 		setCharacterMap();
 		setSuffixMap();
+		setSuffixIsPrefix();
 	}
 	
 	public String getPattern(){
@@ -54,9 +57,26 @@ public final class BMPattern {
 		}
 	}
 	
+	private void setSuffixIsPrefix(){
+		int length = pattern.length();
+		for(int i = length - 1;i >= 0;i--){
+			int j = 0, k = i;
+			for(;j < length - i;k++, j++){
+				if(pattern.charAt(j) != pattern.charAt(k)){
+					break;
+				}
+			}
+			if(j != length - i){
+				suffixIsPrefix.put(length - i, false);
+			}else{
+				suffixIsPrefix.put(length - i, true);
+			}
+		}
+	}
+	
 	private void setSuffixMap(){
 		int length = pattern.length();
-		for(int i = length - 2;i >= 0;i--){
+		for(int i = length - 1;i >= 0;i--){
 			int q = i;
 			while(q >= 0 && pattern.charAt(q) == pattern.charAt(q + length - 1 - i)){
 				if(!suffixMap.containsKey(i - q)){
@@ -68,7 +88,17 @@ public final class BMPattern {
 	}
 
 	public int getGoodSufixShifting(int goodSuffixLength) {
-		
-		return 0;
+		int shifting = 0;
+		if((shifting = checkGoodSuffix(goodSuffixLength)) == -1){
+			int i = goodSuffixLength - 1;
+			for(;i > 0;i--){
+				if(suffixIsPrefix.get(i) == true){
+					return pattern.length() - i;
+				}
+			}
+			return pattern.length();
+		}else{
+			return shifting;
+		}
 	}
 }
