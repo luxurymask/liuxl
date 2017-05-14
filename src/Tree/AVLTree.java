@@ -23,6 +23,10 @@ public class AVLTree<AnyType extends Comparable<? super AnyType>> extends Binary
 			root.element = findMin(root.right).element;
 			root.right = remove(root.right, root.element);
 		}else{
+			//SB：Java中参数传递都是值传递，而不是引用传递，因此这里是直接将节点覆盖，而不是改变引用的指向。
+			//真理：上面的理解简直太傻逼了，完全暴露了我不会Java的本质。这里对root的赋值操作就是引用的移动。
+			//可是这里是要用root的非null孩子覆盖root啊，移动指针怎么能实现覆盖呢？因为后面return了啊傻孩子。
+			//这里是递归remove的，当前递归栈帧返回root的非空孩子，上一栈帧会有一个节点接收这个非空孩子作为它的孩子的。
 			root = (root.left == null) ? root.right : root.left;
 		}
 		
