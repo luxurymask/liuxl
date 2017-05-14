@@ -62,7 +62,7 @@ public class AVLTree<AnyType extends Comparable<? super AnyType>> extends Binary
 				root = doubleRotate(root, 0);
 			}
 		}else if(height(root.right) - height(root.left) > IMBALANCE_LIMIT){
-			//删除节点后调整时以及root.left.left是叶子节点时会产生相等的情形。
+			//删除节点后调整时以及root.right.right是叶子节点时会产生相等的情形。
 			if(root.right.right.height >= root.right.left.height){
 				root = singleRotate(root, 1);
 			}else{
