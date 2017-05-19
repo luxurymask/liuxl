@@ -42,6 +42,11 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 		root = remove(element, root);
 	}
 	
+	/**
+	 * 中序遍历判断是否是BST.
+	 * @param root
+	 * @return
+	 */
 	private boolean isBinarySearchTree(BinaryNode<AnyType> root){
 		BinaryNode<AnyType> current = root;
 		BinaryNode<AnyType> pre = null;
@@ -54,11 +59,8 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 			
 			if(!stack.isEmpty()){
 				current = stack.pop();
-				if(pre == null || pre.element.compareTo(current.element) < 0){
-					pre = current;
-				}else if(pre.element.compareTo(current.element) >= 0){
-					return false;
-				}
+				if(pre.element.compareTo(current.element) >= 0) return false;
+				pre = current;
 				current = current.right;
 			}
 		}
