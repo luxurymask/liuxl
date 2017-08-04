@@ -1,5 +1,10 @@
 package algorithms.substringmatching;
 
+/**
+ * 暴力谁不会
+ * @author liuxl
+ *
+ */
 public class BruteForce {
 	/**
 	 * brute force.
