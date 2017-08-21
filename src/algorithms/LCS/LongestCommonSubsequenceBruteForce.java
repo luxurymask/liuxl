@@ -3,7 +3,7 @@ package algorithms.LCS;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LongestCommonSubsequence {
+public class LongestCommonSubsequenceBruteForce {
 	static List<String> subsequenceList = new ArrayList<String>();
 	static List<String> resultList = new ArrayList<String>();
 
@@ -46,5 +46,6 @@ public class LongestCommonSubsequence {
 		//getAllSubsequence("ABCBDAB", "", 0);
 		//System.out.println(subsequenceList);
 		System.out.println(bruteForce("ABCBDAB", "BDCABA"));
+		System.out.println(bruteForce("sea", "eat"));
 	}
 }

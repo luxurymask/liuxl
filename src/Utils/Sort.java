@@ -167,6 +167,33 @@ public class Sort {
     	}
     }
     
+    /**
+     * 计数排序。
+     * @param A 待排序数组。
+     * @param k 数组中最大数。
+     * @return 排序好的数组。
+     */
+    public static int[] countingSort(int[] A, int k){
+    	int length = A.length;
+    	int[] aux = new int[k];
+    	int[] result = new int[length];
+    	
+    	for(int i = 0;i < length;i++){
+    		aux[A[i]]++;
+    	}
+    	
+    	for(int i = 2;i < length;i++){
+    		aux[i] = aux[i] + aux[i - 1];
+    	}
+    	
+    	for(int i = length - 1;i >= 0;i--){
+    		result[aux[A[i]]] = A[i];
+    		aux[A[i]]--;
+    	}
+    	
+    	return result;
+    }
+    
     public static void main(String[] args){
         int[] A = new int[]{1, 3, 7, 8, 2, 4, 6, 5, 9, 0};
         //insertionSort(A);
