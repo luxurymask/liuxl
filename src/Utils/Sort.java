@@ -28,7 +28,7 @@ public class Sort {
      * @param high 排序终止位置。
      * @return
      */
-    public static int[] mergeSort(int[] A, int low, int high){
+    public static void mergeSort(int[] A, int low, int high){
         int mid = (low + high)/2;
         
         if(low < high){//don't forget the bound.
@@ -36,8 +36,6 @@ public class Sort {
             mergeSort(A, mid + 1, high);
             merge(A, low, mid, high);
         }
-        
-        return A;
     }
     
     /**
@@ -198,7 +196,7 @@ public class Sort {
         int[] A = new int[]{1, 3, 7, 8, 2, 4, 6, 5, 9, 0};
         //insertionSort(A);
         //int[] B = mergeSort(A, 0, A.length - 1);
-        quickSort(A, 0, A.length - 1);
+        mergeSort(A, 0, A.length - 1);
         for(int i = 0;i < A.length;i++){
             System.out.print(A[i]);
         }
