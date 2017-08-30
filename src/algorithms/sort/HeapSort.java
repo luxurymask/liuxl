@@ -2,12 +2,17 @@ package algorithms.sort;
 
 /**
  * 堆排序
- * @author liuxl
- *
+ * 时间复杂度：
+ * 最好：O(nlgn), 平均：O(nlgn), 最差：O(nlgn)
+ * 空间复杂度：
+ * O(1), IN-SPACE.
+ * 不稳定的排序。
+ *----------------------------------------------------------------------------
  * KEY TRICK：
  * 一棵完全二叉树可以用数组来表示。
  * 对于数组上任一位置i上的元素（i从0开始）：
  * 其左儿子位置为2 * i + 1，右儿子位置为2 * (i + 1)，父亲位置为(i - 1) / 2（向下取整）。
+ * ---------------------------------------------------------------------------
  */
 public class HeapSort {
 	
@@ -25,23 +30,33 @@ public class HeapSort {
 		}
 	}
 	
+	/**
+	 * 下滤操作。
+	 * @param array
+	 * @param i 初始hole位置。
+	 * @param n 数组未排序部分长度。
+	 */
 	public static void percolateDown(int[] array, int i, int n){
 		int temp = array[i];
 		int child;
 		//下滤循环终止到倒数第二层，即循环条件为i处节点至少有左儿子。
 		for(;2 * i + 1 < n;i = child){
+			//左孩子
 			child = 2 * i + 1;
 			//大顶堆
+			//判断是否有右孩子并判断右孩子是否比做孩子大。
 			if(child != n - 1 && array[child + 1] > array[child]){
 				child++;
 			}
 			
+			//下滤
 			if(array[child] > temp){
 				array[i] = array[child];
 			}else{
 				break;
 			}
 		}
+		//填补hole。i最终值为要下滤数的最终位置。
 		array[i] = temp;
 	}
 	
