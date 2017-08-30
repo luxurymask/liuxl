@@ -122,7 +122,7 @@ public class Sort {
      * @return 左孩子index。
      */
     private static int leftChild(int i){
-    	return 2 * i - 1;
+    	return 2 * i + 1;
     }
     
     /**
@@ -196,7 +196,7 @@ public class Sort {
         int[] A = new int[]{1, 3, 7, 8, 2, 4, 6, 5, 9, 0};
         //insertionSort(A);
         //int[] B = mergeSort(A, 0, A.length - 1);
-        mergeSort(A, 0, A.length - 1);
+        heapSort(A);
         for(int i = 0;i < A.length;i++){
             System.out.print(A[i]);
         }
