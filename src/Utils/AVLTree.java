@@ -1,7 +1,6 @@
-package Tree;
+package Utils;
 
-import Utils.BinarySearchTree;
-
+@Deprecated
 public class AVLTree<AnyType extends Comparable<? super AnyType>> extends BinarySearchTree<AnyType>{
 	public AVLNode<AnyType> root;
 	private static final int IMBALANCE_LIMIT = 1;

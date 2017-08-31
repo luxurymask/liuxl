@@ -75,7 +75,7 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 			root.right = remove(element, root.right);
 		}else if(root.left != null && root.right != null){
 			root.element = findMin(root.right).element;
-			root = remove(root.element, root.right);
+			root.right = remove(root.element, root.right);
 		}else{
 			root = (root.left != null) ? root.left : root.right;
 		}

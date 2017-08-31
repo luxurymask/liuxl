@@ -1,5 +1,8 @@
-package Tree;
+package Utils;
 
+import Tree.BinaryNode;
+
+@Deprecated
 public class AVLNode<AnyType> extends BinaryNode{
 	AnyType element;
 	AVLNode<AnyType> left;
