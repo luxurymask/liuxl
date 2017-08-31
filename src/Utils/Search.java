@@ -1,5 +1,6 @@
 package Utils;
 
+@Deprecated
 public class Search {
 	public static int binarySearch(int[] A, int k, int left, int right){
 		if(left > right) return -1;

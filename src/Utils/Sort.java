@@ -1,7 +1,5 @@
 package Utils;
 
-import java.util.logging.Logger;
-
 public class Sort {
     /**
      * 插入排序

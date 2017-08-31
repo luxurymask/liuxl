@@ -1,8 +1,11 @@
-package Tree;
+package Utils;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
+import Tree.BinaryNode;
+
+@Deprecated
 public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	private BinaryNode<AnyType> root;
 	
