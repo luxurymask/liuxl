@@ -27,7 +27,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
 		for(AnyType item : items){
 			this.items[i++] = item;
 		}
-		buildHead();
+		buildHeap();
 	}
 	
 	public void insert(AnyType item){
@@ -55,7 +55,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
 	/**
 	 * 从乱序items数组构建堆，线性时间复杂度。
 	 */
-	private void buildHead(){
+	private void buildHeap(){
 		for(int i = currentMaxIndex / 2;i > 0;i--){
 			percolateDown(i);
 		}
