@@ -1,4 +1,4 @@
-package Tree;
+package Utils;
 
 public class BinaryHeap<AnyType extends Comparable<? super AnyType>> {
 	private static final int DEFAULT_CAPACITY = 10;

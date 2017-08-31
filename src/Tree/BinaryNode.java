@@ -1,9 +1,9 @@
 package Tree;
 
 public class BinaryNode<AnyType> {
-	AnyType element;
-	BinaryNode<AnyType> left;
-	BinaryNode<AnyType> right;
+	public AnyType element;
+	public BinaryNode<AnyType> left;
+	public BinaryNode<AnyType> right;
 	
 	public BinaryNode(AnyType element){
 		this(element, null, null);
