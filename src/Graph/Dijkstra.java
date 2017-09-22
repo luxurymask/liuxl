@@ -3,8 +3,6 @@ package Graph;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -59,12 +57,13 @@ public class Dijkstra {
 
 	/**
 	 * 打印最短路径。
+	 * 
 	 * @param graph
 	 * @param from
 	 * @param to
 	 */
 	public static void shortestPath(int[][] graph, int from, int to) {
-		int[] distance = graph[from];
+		int[] distance = Arrays.copyOf(graph[from], graph[from].length);
 		List<List<Integer>> list = new ArrayList<>();
 		PriorityQueue<Integer> heap = new PriorityQueue<>(new Comparator<Integer>() {
 			@Override
@@ -80,6 +79,8 @@ public class Dijkstra {
 
 		while (!heap.isEmpty()) {
 			int current = heap.poll();
+			heap.add(current);
+			current = heap.poll();
 			list.get(current).add(current);
 			if (current == to)
 				break;
